@@ -31,14 +31,14 @@ public class Robot extends TimedRobot {
   private final DifferentialDrive robotDrive = new DifferentialDrive(m_left, m_right);
   private final Joystick stick = new Joystick(0);
 
-  private final double ROTATION_SCALE = 1.0; // scale factor 0 to 1 to make turns easier to control, but not too slow
+  private final double ROTATION_SCALE = 1; // scale factor 0 to 1 to make turns easier to control, but not too slow
 
-  private int direction = 1;
+
 
   @Override
   //set right motors to inverted
   public void robotInit() {
-    m_right.setInverted(true);
+    m_left.setInverted(true);
   }
 
   @Override
@@ -66,13 +66,13 @@ public class Robot extends TimedRobot {
     // System.out.println(speed); // debug
 
     // apply speed modification based on throttle and direction
-    double driveSpeed = stick.getY() * throttle * direction;
+    double driveSpeed = stick.getY() * throttle;
 
     // using x-axis to rotate
-    //double driveRotation = stick.getX() * throttle * ROTATION_SCALE;
+    double driveRotation = -stick.getX() * throttle *ROTATION_SCALE;
     
-    //using stick rotation to rotate
-    double driveRotation = stick.getTwist() * throttle *ROTATION_SCALE;
+    //using stick rotation to rotate (broken)
+    //double driveRotation = stick.getTwist() * throttle *ROTATION_SCALE;
 
     // instantaneous propulsion is based on the computed speed and rotation
     robotDrive.arcadeDrive(driveSpeed, driveRotation);
