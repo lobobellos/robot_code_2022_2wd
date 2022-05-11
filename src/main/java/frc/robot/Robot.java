@@ -28,8 +28,8 @@ public class Robot extends TimedRobot {
     DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
 
 
-  private final DifferentialDrive robotDrive = new DifferentialDrive(m_left, m_right);
-  private final Joystick stick = new Joystick(0);
+    DifferentialDrive robotDrive = new DifferentialDrive(m_left, m_right);
+    Joystick stick = new Joystick(0);
 
   private final double ROTATION_SCALE = 1; // scale factor 0 to 1 to make turns easier to control, but not too slow
 
